@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 
 
 
+
 function Jobcreat() {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -25,7 +26,7 @@ function Jobcreat() {
     skills: "",
     information: ""
   })
-  const backendURL = process.env.backendURL
+  const backendURL = process.env.REACT_APP_BACKEND_URL
 
   useEffect(()=>{
     const { id, edit } = state || {};
@@ -37,10 +38,10 @@ function Jobcreat() {
     if(id){
         setId(id)
         const options = {method: 'GET'};
-        fetch(`${backendURL}/create/job-post/${id}`, options)
+        fetch(`${backendURL}/api/job-post/${id}`, options)
         .then(response => response.json())
         .then(response => setdata(console.log("API Response:", response),response.jobpost))
-        .catch(err => console.error(err));
+        .catch(err => console.log("5",err));
     }
   },[state])
   const token = window.localStorage.getItem("token");
@@ -69,13 +70,13 @@ function Jobcreat() {
       return
     }
 
-    let response = await axios.post(`${backendURL}/create//jobpost`, data, config)
+    let response = await axios.post(`${backendURL}/api/jobpost`, data, config)
       .then((res) => {
         console.log("data save to data base", response.data);
         console.log("res", response)
         
       }).catch((err) => {
-        console.log("ree", err)
+        console.log("ree 6", err)
       })
       alert('Job add sussesfull complet')
         navigate('/Home')
@@ -106,14 +107,14 @@ function Jobcreat() {
     }
     const formData = { ...data, name: recruiterName }
     try {
-    let response =  await axios.put(`${backendURL}/create/job-post/${id}`,formData, config)
+    let response =  await axios.put(`${backendURL}/api/job-post/${id}`,formData, config)
         console.log(response.data.jobpost)
           setEdit(response.data.jobpost)
           alert("Job edited successfully")
           navigate('/Home')
 
     } catch (error)  {
-    console.log("error:", error)
+    console.log("error: 7", error)
   }
 }
 

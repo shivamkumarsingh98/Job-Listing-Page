@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
+
 function Register() {
   const history = useNavigate();
   const [formData, setformData] = useState({
@@ -26,7 +27,7 @@ function Register() {
       return
     }
     try {
-      const backendURL = process.env.backendURL
+      const backendURL = process.env.REACT_APP_BACKEND_URL
       const response = await axios.post(`${backendURL}/user/register`, formData)
       console.log("data save to data base", response.data);
 

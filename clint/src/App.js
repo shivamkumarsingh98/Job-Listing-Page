@@ -9,6 +9,7 @@ import Jobcreat from './Component/Jobcreat';
 import Jobdetails from './Card/Jobdetails';
 
 
+
 function App() {
   return (
     <div >
@@ -19,6 +20,7 @@ function App() {
           <Route path="/Register" element={<Register/>} />
           <Route path='/Jobcreat' element={<Jobcreat/>}/>
           <Route path='/Jobdetails' element={<Jobdetails/>}/>
+         
           
         </Routes>
      

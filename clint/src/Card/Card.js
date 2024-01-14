@@ -13,7 +13,7 @@ function Card() {
     const [skill, setSkills] = useState([])
     const [search, setSearch] = useState("")
     const [isLoggedIn, setIsLoggedIn] = useState(!!window.localStorage.getItem("token"))
-    const backendURL = process.env.backendURL
+    const backendURL = process.env.REACT_APP_BACKEND_URL
 
     const handelserch = (e) => {
         setSearch(e.target.value)
@@ -29,12 +29,12 @@ function Card() {
         }
         else {
             console.log("Backend URL:", backendURL);
-            axios.get(`${backendURL}/create/job-post?skills=`)
+            axios.get(`${backendURL}/api/job-post?skills=`)
                 .then((response) => {
                     setjob([...response.data.jobdata])
                 })
                 .catch((err) => {
-                    console.log("err", err)
+                    console.log("err 3", err)
                 })
 
         }
@@ -60,14 +60,14 @@ function Card() {
     useEffect(() => {
         
         const search = skill.join("&").toLowerCase()
-        axios.get(`${backendURL}/create/job-post?skills=${search}`)
+        axios.get(`${backendURL}/api/job-post?skills=${search}`)
 
             .then((response) => {
                 console.log("result:",response.data)
                 setjob([...response.data.jobdata])
             })
 
-            .catch(err => console.error(err));
+            .catch(err => console.log("4",err));
             
     }, [skill])
 
@@ -75,7 +75,7 @@ function Card() {
 
 
     useEffect(() => {
-        axios.get(`${backendURL}/create/job-post`).then((res) => {
+        axios.get(`${backendURL}/api/job-post`).then((res) => {
             if (res.data && Array.isArray(res.data.jobdata)) {
                 setjob(res.data.jobdata);
             } else {
@@ -83,7 +83,7 @@ function Card() {
             }
         })
             .catch((error) => {
-                console.error("Error fetching", error)
+                console.error("Error fetching 2", error)
             })
     }, [])
     const codingSkills = [

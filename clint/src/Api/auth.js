@@ -1,5 +1,1 @@
-import axios from 'axios';
-
-const Login = ()=>{
-    
-}
+export const api = 'http//localhost8080'

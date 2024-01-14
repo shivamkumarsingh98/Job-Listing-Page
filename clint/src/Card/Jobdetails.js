@@ -6,23 +6,24 @@ import Navebar from '../Navebar/Navebar';
 import style from './jobdetails.module.css'
 
 
+
 function Jobdetails() {
   const { state } = useLocation();
   const { id } = state
   const [jobDetails, setJobDetails] = useState(undefined);
 
   useEffect(() => {
-    const backendURL = process.env.backendURL
+    const backendURL = process.env.REACT_APP_BACKEND_URL
     console.log("Backend URL:", backendURL);
-    axios.get(`${backendURL}/create/job-post/${id}`)
+    axios.get(`${backendURL}/api/job-post/${id}`)
       .then((response) => {
-        console.log("response.data:", response.data)
+        console.log("response.data: 8", response.data)
 
         setJobDetails(response.data);
       }
       )
       .catch((error) => {
-        console.error('Error fetching job details', error);
+        console.error('Error fetching job details 1', error);
       });
   }, []);
 
