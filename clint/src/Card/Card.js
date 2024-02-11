@@ -24,11 +24,11 @@ function Card() {
     useEffect(() => {
         if (search.length > 0) {
             const arr = jobset.filter(job => job?.position?.toLowerCase().includes(search.toLowerCase()))
-            console.log(arr)
+           
             setjob([...arr]);
         }
         else {
-            console.log("Backend URL:", backendURL);
+            
             axios.get(`${backendURL}/api/job-post?skills=`)
                 .then((response) => {
                     setjob([...response.data.jobdata])
@@ -63,7 +63,7 @@ function Card() {
         axios.get(`${backendURL}/api/job-post?skills=${search}`)
 
             .then((response) => {
-                console.log("result:",response.data)
+                
                 setjob([...response.data.jobdata])
             })
 
